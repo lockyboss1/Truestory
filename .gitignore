@@ -1,0 +1,85 @@
+## .NET build artifacts
+bin/
+obj/
+*.user
+*.rsuser
+*.suo
+*.cache
+*.ilk
+*.log
+*.pdb
+*.tmp
+
+## Rider & VS Code
+.idea/
+.vscode/
+.vscode-test/
+
+## ASP.NET temporary files
+**/wwwroot/lib/
+
+## User-specific files
+*.sln.docstates
+
+## macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+._*
+
+# Thumbnails
+.Thumbnails
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Apple metadata
+*.DS_Store
+*.AppleDouble
+*.LSOverride
+
+## Dotnet user secrets
+**/secrets.json
+
+## Logs
+*.log
+
+## Env files
+.env
+.env.*
+
+## Test results
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+## Global packages, tools, and SDKs
+.global.json
+.nuget/
+packages/
+*.nupkg
+*.snupkg
+
+## Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+## Backup & IDE generated files
+*~
+*.bak
+*.old
+*.swp
+
+## Local config files
+appsettings.Local.json
+appsettings.Development.json

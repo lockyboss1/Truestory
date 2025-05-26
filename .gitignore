@@ -413,3 +413,4 @@ logs.txt
 logs*.txt
 
 obj/
+bin/

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Truestory")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a100e17b55e40e37a07f421c63046b01d1ad14dd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0fb8a50f7b5ed56a7abe24c074c9ad2b6d135ea0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Truestory")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Truestory")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

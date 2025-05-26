@@ -1,6 +1,6 @@
 # Product API
 
-A simple RESTful Web API built with .NET 8 that extends a mock external API ([https://api.restful-api.dev](https://api.restful-api.dev)) by adding filtering, paging, validation, and error handling.
+A simple RESTful Web API built with .NET 8 that extends a mock external API ([https://restful-api.dev/](https://restful-api.dev/)) by adding filtering, paging, validation, and error handling.
 
 ---
 

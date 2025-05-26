@@ -411,3 +411,5 @@ appsettings.Development.json
 # Ignore log files
 logs.txt
 logs*.txt
+
+obj/

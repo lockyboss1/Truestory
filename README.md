@@ -47,12 +47,12 @@ Validation failures return detailed HTTP 400 responses, improving API reliabilit
 
 ```
 dotnet restore 
-
 ```
 
 ### Run the API
-
-- dotnet run
+```
+dotnet run
+```
 
 ### By default, the API will run at: "http://localhost:5000"
 

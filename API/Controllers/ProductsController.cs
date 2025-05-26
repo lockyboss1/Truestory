@@ -12,50 +12,28 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetProducts(string? name = null, int page = 1, int pageSize = 10)
+    public async Task<IActionResult> GetProducts([FromQuery] ProductQueryDto query)
     {
-        try
-        {
-            var products = await _service.GetProductsAsync(name, page, pageSize);
-            return Ok(new ApiResponse<IEnumerable<Product>>(products, "Products retrieved successfully"));
-        }
-        catch
-        {
-            return StatusCode(500, new ApiResponse<string>(null, "Failed to retrieve products", false));
-        }
+        var products = await _service.GetProductsAsync(query);
+        return Ok(new ApiResponse<IEnumerable<Product>>(products, "Products retrieved successfully"));
     }
 
     [HttpPost]
     public async Task<IActionResult> AddProduct([FromBody] ProductDto dto)
     {
-        try
+        var product = await _service.AddProductAsync(dto);
+        return CreatedAtAction(nameof(GetProducts), new { id = product.Id }, new
         {
-            var result = await _service.AddProductAsync(dto);
-            var response = new ApiResponse<Product>(result, "Product successfully added");
-            return CreatedAtAction(nameof(GetProducts), new { name = result.Name }, response);
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(new ApiResponse<string>(null, ex.Message, false));
-        }
-        catch
-        {
-            return StatusCode(500, new ApiResponse<string>(null, "An unexpected error occurred.", false));
-        }
+            success = true,
+            message = "Product successfully added",
+            data = product
+        });
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProduct(string id)
     {
-        var success = await _service.DeleteProductAsync(id);
-
-        if (success)
-        {
-            return Ok(new ApiResponse<string>(null, "Product deleted successfully"));
-        }
-        else
-        {
-            return NotFound(new ApiResponse<string>(null, $"Product with ID {id} not found", false));
-        }
+        await _service.DeleteProductAsync(id);
+        return Ok(new { success = true, message = $"Product {id} successfully deleted" });
     }
 }

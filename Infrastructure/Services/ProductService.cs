@@ -13,18 +13,18 @@ public class ProductService : IProductService
         _validator = validator;
     }
 
-    public async Task<IEnumerable<Product>> GetProductsAsync(string nameFilter, int page, int pageSize)
+    public async Task<IEnumerable<Product>> GetProductsAsync(ProductQueryDto query)
     {
         var items = await _client.GetProducts();
 
         var filtered = items
-            .Where(p => string.IsNullOrWhiteSpace(nameFilter) ||
+            .Where(p => string.IsNullOrWhiteSpace(query.NameFilter) ||
                         (!string.IsNullOrEmpty(p.Name) &&
-                         p.Name.Contains(nameFilter, StringComparison.OrdinalIgnoreCase)));
+                         p.Name.Contains(query.NameFilter, StringComparison.OrdinalIgnoreCase)));
 
         return filtered
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize);
+            .Skip((query.Page - 1) * query.PageSize)
+            .Take(query.PageSize);
     }
 
     public async Task<Product> AddProductAsync(ProductDto dto)
@@ -40,7 +40,8 @@ public class ProductService : IProductService
 
         try
         {
-            return await _client.CreateProduct(product);
+            var response = await _client.CreateProduct(product);
+            return response;
         }
         catch (ApiException ex)
         {
@@ -56,10 +57,13 @@ public class ProductService : IProductService
             await _client.DeleteProduct(id);
             return true;
         }
+        catch (ApiException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+        {
+            throw new KeyNotFoundException($"Product with id {id} not found");
+        }
         catch (ApiException ex)
         {
-            Console.WriteLine($"Failed to delete product {id}: {ex.Message}");
-            return false;
+            throw new Exception($"Failed to delete product {id}: {ex.Message}");
         }
     }
 }

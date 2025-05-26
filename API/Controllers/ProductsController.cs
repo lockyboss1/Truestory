@@ -11,6 +11,12 @@ public class ProductsController : ControllerBase
         _service = service;
     }
 
+
+    /// <summary>
+    /// Gets filtered and paged products.
+    /// </summary>
+    /// <param name="query">Filter and pagination parameters.</param>
+    /// <returns>Filtered list of products with success message.</returns>
     [HttpGet]
     public async Task<IActionResult> GetProducts([FromQuery] ProductQueryDto query)
     {
@@ -18,6 +24,11 @@ public class ProductsController : ControllerBase
         return Ok(new ApiResponse<IEnumerable<Product>>(products, "Products retrieved successfully"));
     }
 
+    /// <summary>
+    /// Adds a new product.
+    /// </summary>
+    /// <param name="dto">Product data transfer object.</param>
+    /// <returns>Created product with success message.</returns>
     [HttpPost]
     public async Task<IActionResult> AddProduct([FromBody] ProductDto dto)
     {
@@ -30,6 +41,11 @@ public class ProductsController : ControllerBase
         });
     }
 
+    /// <summary>
+    /// Deletes a product by ID.
+    /// </summary>
+    /// <param name="id">Product ID.</param>
+    /// <returns>Success message or not found.</returns>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProduct(string id)
     {

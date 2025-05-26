@@ -13,6 +13,7 @@ public class ProductService : IProductService
         _validator = validator;
     }
 
+    /// <inheritdoc />
     public async Task<IEnumerable<Product>> GetProductsAsync(ProductQueryDto query)
     {
         var items = await _client.GetProducts();
@@ -27,6 +28,7 @@ public class ProductService : IProductService
             .Take(query.PageSize);
     }
 
+    /// <inheritdoc />
     public async Task<Product> AddProductAsync(ProductDto dto)
     {
         var validationResult = await _validator.ValidateAsync(dto);
@@ -50,6 +52,7 @@ public class ProductService : IProductService
         }
     }
 
+    /// <inheritdoc />
     public async Task<bool> DeleteProductAsync(string id)
     {
         try
